@@ -30,9 +30,13 @@ module CastingSpels
     def weld(*items)
       if items.length == 2
         if @location.welder?
-          if inventory[items[0].to_sym] and inventory[items[1].to_sym]
-            @inventory.delete(:chain)
-            @inventory[:bucket].weld
+          if @inventory[items[0].to_sym] and @inventory[items[1].to_sym]
+            if items.include?("bucket") and items.include?("chain")
+              @inventory.delete(:chain)
+              @inventory[:bucket].weld
+            else
+              "You wouldn't weld that"
+            end
           else
             "Both items need to be in your inventory."
           end
