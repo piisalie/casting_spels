@@ -2,14 +2,15 @@ module CastingSpels
   class GardenRoom < Room
     def initialize
       @exits = [ :west ]
-      @items = [ ChainItem.new, FrogItem.new ]
-      @well  = true
+      @items = { :chain => ChainItem.new, :frog => FrogItem.new }
     end
 
-    attr_reader :well
+    def describe
+      "A sweet smelling garden with a deep well and a door to the west. Items: #{@items.values.join(", ")}"
+    end
 
-    def description
-      "A sweet smelling garden with a deep well and a door to the west. Items: #{@items.join(", ")}"
+    def well?
+      true
     end
 
     def move(direction)

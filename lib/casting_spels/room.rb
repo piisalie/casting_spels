@@ -1,11 +1,10 @@
 module CastingSpels
   class Room
-    
+
     def take(item)
-      object = nil
-      @items.each { |obj| object = obj if obj.to_s == item }
-      @items.delete_if { |obj| obj.to_s == item } if object
-      return object if object
+      object = @items[item.to_sym]
+      @items.delete(item.to_sym)
+      return object
     end
 
     def has_exit?(direction)
@@ -13,7 +12,7 @@ module CastingSpels
     end
 
     def has_item?(item)
-      @items.one? { |obj| obj.to_s == item }
+      @items.has_key?(item.to_sym)
     end
 
     def welder?

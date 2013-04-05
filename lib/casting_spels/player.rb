@@ -8,12 +8,15 @@ module CastingSpels
       @inventory = { }
     end
 
-    attr_reader :location, :inventory
+    attr_reader :inventory
+
+    def look
+      @location.describe
+    end
 
     def walk(direction)
       if @location.has_exit?(direction)
         @location = @map[@location.move(direction)]
-        puts @location.description
       else
         "cannot move that way"
       end

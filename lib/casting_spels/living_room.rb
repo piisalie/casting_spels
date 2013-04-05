@@ -2,12 +2,15 @@ module CastingSpels
   class LivingRoom < Room
     def initialize
       @exits  = [ :upstairs, :east ]
-      @items  = [ BucketItem.new, WhiskeyBottleItem.new ]
-      @wizard = true
+      @items  = { :bucket => BucketItem.new, :bottle => WhiskeyBottleItem.new }
     end
 
-    def description
-      "A quaint living room, excepting the wizard sprawled on the couch. There's a staircase in the corner and a door to the east. Items: #{@items.join(", ")}"
+    def describe
+      "A quaint living room, excepting the wizard sprawled on the couch. There's a staircase in the corner and a door to the east. Items: #{@items.values.join(", ")}"
+    end
+
+    def wizard?
+      true
     end
 
     def move(direction)
