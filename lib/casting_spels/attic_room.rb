@@ -3,18 +3,21 @@ module CastingSpels
     def initialize
       @exits  = [ :downstairs ]
       @items  = [ ]
-      @welder = true
     end
 
     attr_reader :welder
     
-    def look
+    def description
       "A musty attic, a welder sits against the wall and a staircase in the corner. Items: #{@items.join(", ")}"
+    end
+
+    def welder?
+      true
     end
     
     def move(direction)
       case direction
-      when :downstairs
+      when "downstairs"
         :living_room
       end
     end

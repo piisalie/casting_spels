@@ -6,13 +6,15 @@ module CastingSpels
       @well  = true
     end
 
-    def look
+    attr_reader :well
+
+    def description
       "A sweet smelling garden with a deep well and a door to the west. Items: #{@items.join(", ")}"
     end
 
     def move(direction)
       case direction
-      when :west
+      when "west"
         :living_room
       end
     end

@@ -10,17 +10,17 @@ module CastingSpels
 
     attr_reader :location, :inventory
 
-    def move(direction)
-      if @location.move?(direction.to_sym)
-        @location = @map[@location.move(direction.to_sym)]
-        @location.look
+    def walk(direction)
+      if @location.has_exit?(direction)
+        @location = @map[@location.move(direction)]
+        puts @location.description
       else
         "cannot move that way"
       end
     end
 
-    def get(item)
-      if @location.has?(item)
+    def pickup(item)
+      if @location.has_item?(item)
         @inventory[item.to_sym] = @location.take(item)
       else
         "Do you see a #{item}? I don't"
@@ -28,6 +28,20 @@ module CastingSpels
     end
 
     def weld(*items)
+      if items.length == 2
+        if @location.welder?
+          if inventory[items[0].to_sym] and inventory[items[1].to_sym]
+            @inventory.delete(:chain)
+            @inventory[:bucket].weld
+          else
+            "Both items need to be in your inventory."
+          end
+        else
+          "You'll need a welder in order to weld."
+        end
+      else
+        "You'll need two items in order to weld."
+      end 
     end
 
     def fill(item)

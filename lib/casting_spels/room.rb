@@ -8,8 +8,21 @@ module CastingSpels
       return object if object
     end
 
-    def move?(direction)
-      @exits.include?(direction)
+    def has_exit?(direction)
+      @exits.include?(direction.to_sym)
     end
+
+    def has_item?(item)
+      @items.one? { |obj| obj.to_s == item }
+    end
+
+    def welder?
+      false
+    end
+
+    def well?
+      false
+    end
+
   end
 end

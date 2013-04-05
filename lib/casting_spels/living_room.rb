@@ -3,18 +3,18 @@ module CastingSpels
     def initialize
       @exits  = [ :upstairs, :east ]
       @items  = [ BucketItem.new, WhiskeyBottleItem.new ]
-      @wizard = WizardItem.new
+      @wizard = true
     end
 
-    def look
+    def description
       "A quaint living room, excepting the wizard sprawled on the couch. There's a staircase in the corner and a door to the east. Items: #{@items.join(", ")}"
     end
 
     def move(direction)
       case direction
-      when :upstairs
+      when "upstairs"
         :attic
-      when :east
+      when "east"
         :garden
       end
     end

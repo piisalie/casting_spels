@@ -1,7 +1,7 @@
 module CastingSpels
   class WhiskeyBottleItem
     def to_s
-      "whiskey bottle"
+      "whiskey-bottle"
     end
 
     def inspect
