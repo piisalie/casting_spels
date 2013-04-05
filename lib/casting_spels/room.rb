@@ -1,6 +1,5 @@
 module CastingSpels
   class Room
-    
     def take(item)
       object = nil
       @items.each { |obj| object = obj if obj.to_s == item }
@@ -8,8 +7,20 @@ module CastingSpels
       return object if object
     end
 
-    def move?(direction)
+    def has_exit?(direction)
       @exits.include?(direction)
+    end
+
+    def has?(item)
+      @items.one? { |obj| obj.to_s == item }
+    end
+
+    def welder?
+      false
+    end
+
+    def well?
+      false
     end
   end
 end
