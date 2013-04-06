@@ -13,6 +13,10 @@ module CastingSpels
       true
     end
 
+    def splash_wizard
+      "you win"
+    end
+
     def move(direction)
       case direction
       when "upstairs"

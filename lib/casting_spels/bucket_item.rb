@@ -5,6 +5,8 @@ module CastingSpels
       @welded = false
     end
 
+    attr_reader :full, :welded
+    
     def weld
       @welded = true
     end

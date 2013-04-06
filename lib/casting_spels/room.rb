@@ -23,5 +23,8 @@ module CastingSpels
       false
     end
 
+    def wizard?
+      false
+    end
   end
 end

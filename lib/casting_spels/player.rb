@@ -26,7 +26,7 @@ module CastingSpels
       if @location.has_item?(item)
         @inventory[item.to_sym] = @location.take(item)
       else
-        "Do you see a #{item}? I don't"
+        "Do you see a #{item}? I don't."
       end
     end
 
@@ -38,7 +38,7 @@ module CastingSpels
               @inventory.delete(:chain)
               @inventory[:bucket].weld
             else
-              "You wouldn't weld that"
+              "You wouldn't weld that!"
             end
           else
             "Both items need to be in your inventory."
@@ -51,7 +51,36 @@ module CastingSpels
       end 
     end
 
-    def fill(item)
+    def dunk(item)
+      if @location.well?
+        if @inventory[item.to_sym]
+          if item == "bucket" and @inventory[:bucket].welded
+            @inventory[:bucket].fill
+          else
+            "The water is too low to do that."
+          end
+        else
+          "You cannot dunk an item that's not in your inventory."
+        end
+      else
+        "You'll need a well to do that."
+      end
+    end
+
+    def splash
+      if @location.wizard?
+        if @inventory[:bucket]
+          if @inventory[:bucket].full
+            @location.splash_wizard
+          else
+            "Your bucket needs to be full."
+          end
+        else
+          "You need a bucket to do that."
+        end
+      else
+        "Don't waste water on things that aren't wizards!"
+      end
     end
   end
 end
