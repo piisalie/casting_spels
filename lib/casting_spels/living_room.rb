@@ -14,10 +14,22 @@ module CastingSpels
     end
 
     def splash_wizard
-      "you win"
+      system "clear"
+      puts "You splash the wizard..."
+      sleep 2
+      puts "... he wakes and give you a low carb donut!"
+      puts "        _.-------._    "
+      puts "      .'    ___    '.  "
+      puts "     /     (___)     \\ "
+      puts "     |'._         _.'| "
+      puts "     |   `'-----'`   | "
+      puts "      \\             /  "
+      puts "       '-.______..-'   "
+      puts "You Win!"
+      exit
     end
 
-    def move(direction)
+    def exit(direction)
       case direction
       when "upstairs"
         :attic

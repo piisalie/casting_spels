@@ -13,7 +13,7 @@ module CastingSpels
       true
     end
 
-    def move(direction)
+    def exit(direction)
       case direction
       when "west"
         :living_room
