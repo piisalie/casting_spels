@@ -23,7 +23,7 @@ module CastingSpels
     when "inventory"
       @player.show_inventory
     when "weld"
-      @player.weld(words[1], words[2])
+      @player.weld(words[1..-1])
     when "dunk"
       @player.dunk(words[1])
     when "splash"

@@ -39,7 +39,7 @@ module CastingSpels
       end
     end
 
-    def weld(*items)
+    def weld(items)
       if items.length == 2
         if @location.welder?
           if @inventory[items[0].to_sym] and @inventory[items[1].to_sym]
