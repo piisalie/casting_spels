@@ -14,7 +14,7 @@ module CastingSpels
 
     def walk(direction)
       if @location.has_exit?(direction)
-        @location = @map[@location.exit(direction)]
+        @location = @map[@location.exit_room(direction)]
         look
       else
         puts "Cannot move that way."
@@ -28,7 +28,6 @@ module CastingSpels
         show_inventory
       else
         puts "Do you see a #{item}? I don't."
-        sleep 2
       end
     end
 
@@ -78,19 +77,20 @@ module CastingSpels
       end
     end
 
-    def splash
-      if @location.wizard?
-        if @inventory[:bucket]
-          if @inventory[:bucket].full
+    def splash(items)
+      if items.length == 2 and items[0] == "bucket" and @inventory[:bucket]
+        if @inventory[:bucket].full
+          if items[1] == "wizard" and @location.wizard?
             @location.splash_wizard
           else
-            puts "Your bucket needs to be full."
+            puts "You splash the #{items[1]}"
+            @inventory[:bucket].splash
           end
         else
-          puts "You need a bucket to do that."
+          puts "The bucket needs to be full before it can splash anything!"
         end
       else
-        puts "Don't waste water on things that aren't wizards!"
+        puts "You'll need a'bucket and a'object to go a'splashin.'"
       end
     end
   end

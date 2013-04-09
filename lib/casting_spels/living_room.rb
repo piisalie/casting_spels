@@ -17,7 +17,9 @@ module CastingSpels
       system "clear"
       puts "You splash the wizard..."
       sleep 2
-      puts "... he wakes and give you a low carb donut!"
+      puts "... he wakes ..."
+      sleep 2
+      puts "... and gives you a low carb donut!"
       puts "        _.-------._    "
       puts "      .'    ___    '.  "
       puts "     /     (___)     \\ "
@@ -26,10 +28,10 @@ module CastingSpels
       puts "      \\             /  "
       puts "       '-.______..-'   "
       puts "You Win!"
-      exit
+      abort()
     end
 
-    def exit(direction)
+    def exit_room(direction)
       case direction
       when "upstairs"
         :attic

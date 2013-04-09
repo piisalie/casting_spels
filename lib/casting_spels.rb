@@ -27,7 +27,7 @@ module CastingSpels
     when "dunk"
       @player.dunk(words[1])
     when "splash"
-      @player.splash
+      @player.splash(words[1..-1])
     when "exit"
       exit
     end

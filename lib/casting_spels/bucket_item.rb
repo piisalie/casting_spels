@@ -15,6 +15,10 @@ module CastingSpels
       @full = true if @welded
     end
 
+    def splash
+      @full = false if @welded and @full
+    end
+
     def to_s
       "bucket"
     end

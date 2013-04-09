@@ -13,7 +13,7 @@ module CastingSpels
       true
     end
     
-    def exit(direction)
+    def exit_room(direction)
       case direction
       when "downstairs"
         :living_room
