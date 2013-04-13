@@ -1,3 +1,4 @@
+require_relative 'casting_spels/item'
 require_relative 'casting_spels/bucket_item'
 require_relative 'casting_spels/chain_item'
 require_relative 'casting_spels/whiskey_bottle_item'
@@ -23,13 +24,19 @@ module CastingSpels
     when "inventory"
       @player.show_inventory
     when "weld"
-      @player.weld(words[1..-1])
+      if words[2]
+        @player.weld(words[1].to_sym, words[2].to_sym)
+      else
+        puts "You need two items to weld."
+      end
     when "dunk"
-      @player.dunk(words[1])
+      @player.dunk(words[1].to_sym)
     when "splash"
       @player.splash(words[1..-1])
     when "exit"
       exit
+    else
+      puts "You want to do what?"
     end
   end
   

@@ -1,5 +1,5 @@
 module CastingSpels
-  class FrogItem
+  class FrogItem < Item
     def to_s
       "frog"
     end

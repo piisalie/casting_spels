@@ -38,42 +38,30 @@ module CastingSpels
       end
     end
 
-    def weld(items)
-      if items.length == 2
-        if @location.welder?
-          if @inventory[items[0].to_sym] and @inventory[items[1].to_sym]
-            if items.include?("bucket") and items.include?("chain")
-              @inventory.delete(:chain)
-              @inventory[:bucket].weld
-              show_inventory
-            else
-              puts "You wouldn't weld that!"
-            end
-          else
-            puts "Both items need to be in your inventory."
-          end
-        else
-          puts "You'll need a welder in order to weld."
-        end
+    def weld(item1, item2)
+      if !@location.welder?
+        puts "You need a welder to do that."
+      elsif !@inventory[item1] or !@inventory[item2]
+        puts "The items need to be in your inventory"
+      elsif !@inventory[item1].weldable or !@inventory[item2].weldable
+        puts "You wouldn't weld that!"
       else
-        puts "You'll need two items in order to weld."
-      end 
+        @inventory[:bucket].weld
+        @inventory.delete(:chain)
+        show_inventory
+      end
     end
 
     def dunk(item)
-      if @location.well?
-        if @inventory[item.to_sym]
-          if item == "bucket" and @inventory[:bucket].welded
-            @inventory[:bucket].fill
-            show_inventory
-          else
-            puts "The water is too low to do that."
-          end
-        else
-          puts "You cannot dunk an item that's not in your inventory."
-        end
-      else
+      if !@location.well?
         puts "You'll need a well to do that."
+      elsif !@inventory[item]
+        puts "You cannot dunk something that's not in your inventory."
+      elsif item != :bucket or !@inventory[item].welded
+        puts "The well is too deep for that"
+      else
+        @inventory[item].fill
+        show_inventory
       end
     end
 

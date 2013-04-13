@@ -1,5 +1,5 @@
 module CastingSpels
-  class WhiskeyBottleItem
+  class WhiskeyBottleItem < Item
     def to_s
       "bottle"
     end

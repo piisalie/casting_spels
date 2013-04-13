@@ -1,11 +1,12 @@
 module CastingSpels
   class BucketItem
     def initialize
-      @full   = false
-      @welded = false
+      @full     = false
+      @welded   = false
+      @weldable = true
     end
 
-    attr_reader :full, :welded
+    attr_reader :full, :welded, :weldable
     
     def weld
       @welded = true
