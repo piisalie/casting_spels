@@ -32,7 +32,11 @@ module CastingSpels
     when "dunk"
       @player.dunk(words[1].to_sym)
     when "splash"
-      @player.splash(words[1..-1])
+      if words[2]
+        @player.splash(words[1].to_sym, words[2])
+      else
+        puts "Use a bucket and an item to splash."
+      end
     when "exit"
       exit
     else

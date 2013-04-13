@@ -65,20 +65,19 @@ module CastingSpels
       end
     end
 
-    def splash(items)
-      if items.length == 2 and items[0] == "bucket" and @inventory[:bucket]
-        if @inventory[:bucket].full
-          if items[1] == "wizard" and @location.wizard?
-            @location.splash_wizard
-          else
-            puts "You splash the #{items[1]}"
-            @inventory[:bucket].splash
-          end
-        else
-          puts "The bucket needs to be full before it can splash anything!"
-        end
+    def splash(item1, item2)
+      if item1 != :bucket or !@inventory[:bucket]
+        puts "You should use a bucket to splash things."
+      elsif !@inventory[:bucket].full
+        puts "You wave a bucket around wildly in the direction of a #{item2}."
+      elsif item2 != "wizard"
+        puts "You splash your bucket on a #{item2}."
+        @inventory[:bucket].splash
+        show_inventory
+      elsif !@location.wizard?
+        puts "I see no wizard here."
       else
-        puts "You'll need a'bucket and a'object to go a'splashin.'"
+        @location.splash_wizard
       end
     end
   end
