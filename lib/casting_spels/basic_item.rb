@@ -1,5 +1,5 @@
 module CastingSpels
-  class Noun
+  class BasicItem
     def initialize(name, description)
       @name, @description = name, description
     end
