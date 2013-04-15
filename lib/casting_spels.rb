@@ -5,6 +5,7 @@ module CastingSpels
   def self.play
     setup_game
     p @living_room.exits.keys
+    @living_room.show_inventory
   end
 
   def self.setup_game

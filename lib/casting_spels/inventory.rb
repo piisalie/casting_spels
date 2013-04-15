@@ -1,9 +1,15 @@
 module Inventory
-  def get(item)
-    puts "getting item"
+  def show_inventory
+    @items.keys
+  end
+  
+  def take(item)
+    @items[item.name.to_sym] = item
   end
 
   def drop(item)
-    puts "dropping item"
+    return_item = @items[item.name.to_sym]
+    @items.delete(item.name.to_sym)
+    return_item
   end
 end
