@@ -5,6 +5,6 @@ garden = CastingSpels::Room.new("garden",
                                "A nice garden with a well",
                                [ CastingSpels::Item.new("frog", "a croaking green frog"),
                                  CastingSpels::Item.new("chain", "an old chain", true) ],
-                               [:well], [:east])
+                               [:well], [:west])
 
 p garden

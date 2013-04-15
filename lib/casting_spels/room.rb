@@ -1,30 +1,15 @@
+require_relative 'noun'
+require_relative 'inventory'
+
 module CastingSpels
-  class Room
-
-    def take(item)
-      object = @items[item.to_sym]
-      @items.delete(item.to_sym)
-      return object
+  class Room < Noun
+    def initialize(name, description, items,
+                   static_items, exits)
+      super(name, description)
+      @exits        = exits
+      @static_items = static_items
+      @items        = items
     end
-
-    def has_exit?(direction)
-      @exits.include?(direction.to_sym)
-    end
-
-    def has_item?(item)
-      @items.has_key?(item.to_sym)
-    end
-
-    def welder?
-      false
-    end
-
-    def well?
-      false
-    end
-
-    def wizard?
-      false
-    end
+    include Inventory
   end
 end

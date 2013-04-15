@@ -1,9 +1,11 @@
-module CastingSpels
-  class Item
-    def initialize
-      @weldable = false
-    end
+require_relative 'noun'
 
-    attr_reader :weldable
+module CastingSpels
+  class Item < Noun
+    def initialize(name, description,
+                   weldable=false, can_hold_water=false )
+      super(name, description)
+      @weldable, @can_hold_water = weldable, can_hold_water
+    end
   end
 end
