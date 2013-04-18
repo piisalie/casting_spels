@@ -1,10 +1,15 @@
 require_relative '../lib/casting_spels/inventory'
 
+class ItemHolder
+  include Inventory
+  attr_reader :items
+end
+
 describe Inventory do
-  it "shows current inventory keys" do
-    items = { :item1 => "description 1",
-              :item2 => "description 2" }
-    expect(show_inventory).to eq([:item1,:item2])
+  it "puts an item into the inventory" do
+    item_holder = ItemHolder.new
+    item_holder.take(stub(name: :item1))
+    expect(item_holder.items[:item1]).to be_true
   end
 
 end
