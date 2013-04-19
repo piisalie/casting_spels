@@ -1,12 +1,20 @@
 require_relative 'casting_spels/room'
 require_relative 'casting_spels/basic_item'
 
+require_relative 'casting_spels/walk_action'
+require_relative 'casting_spels/pickup_action'
+require_relative 'casting_spels/look_action'
+
+require_relative 'casting_spels/player'
+
 module CastingSpels
   def self.play
     setup_game
-    p @living_room.exits.keys
-    p @living_room.show_inventory
-    p @living_room.exits[:east]
+    while command = gets().strip.split(" ")
+      @player.check_actions(command)
+      @player.location.check_actions(command)
+      puts "Inventory: #{@player.show_inventory}"
+    end
   end
 
   def self.setup_game
@@ -14,6 +22,7 @@ module CastingSpels
     build_garden
     build_attic
     map_exits
+    setup_player
   end
 
   def self.build_living_room
@@ -40,5 +49,11 @@ module CastingSpels
     @attic.add_exit(       :downstairs, @living_room )
     @living_room.add_exit( :east,       @garden )
     @living_room.add_exit( :upstairs,   @attic )
+  end
+
+  def self.setup_player
+    @player = Player.new(@living_room)
+    @player.add_action(WalkAction.new)
+    @player.add_action(PickupAction.new)
   end
 end

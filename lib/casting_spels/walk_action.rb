@@ -1,11 +1,18 @@
 module CastingSpels
   class WalkAction
-    def initialize(starting_location)
-      @current_location = starting_location
+    attr_writer :parent
+
+    def handle?(command)
+      return true if command[0] == "walk"
     end
 
-    def walk(direction)
-      @current_location = @current_location.exits[direction]
+    def process(command)
+      fail "WalkAction needs a parent." unless @parent
+      if @parent.location.exits[command[1].to_sym]
+        @parent.location = @parent.location.exits[command[1].to_sym]
+      else
+        puts "There isn't an exit in that direction."
+      end
     end
   end
 end

@@ -1,16 +1,15 @@
 require_relative "inventory"
+require_relative "actions"
 
 module CastingSpels
   class Player
-    def initialize(location)
+    def initialize(starting_location)
       @items    = { }
-      @location = location
       @actions  = [ ]
+      @location = starting_location
     end
+    attr_accessor :location
     include Inventory
-
-    def add_action(action)
-      @actions << action
-    end
+    include Actions
   end
 end
