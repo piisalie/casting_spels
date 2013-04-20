@@ -4,6 +4,7 @@ require_relative 'casting_spels/basic_item'
 require_relative 'casting_spels/walk_action'
 require_relative 'casting_spels/pickup_action'
 require_relative 'casting_spels/look_action'
+require_relative 'casting_spels/weld_action'
 
 require_relative 'casting_spels/player'
 
@@ -50,10 +51,11 @@ module CastingSpels
     @living_room.add_exit( :east,       @garden )
     @living_room.add_exit( :upstairs,   @attic )
   end
-
+p
   def self.setup_player
     @player = Player.new(@living_room)
     @player.add_action(WalkAction.new)
     @player.add_action(PickupAction.new)
+    @attic.add_action(WeldAction.new(@player))
   end
 end
